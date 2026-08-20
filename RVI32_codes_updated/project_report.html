@@ -1,0 +1,445 @@
+<title>RISC-V RV32I SoC with Peripheral Integration — Project Report</title>
+<style>
+  @page { size: A4; margin: 18mm 16mm; }
+
+  :root {
+    --ink: #16181d;
+    --muted: #55595f;
+    --rule: #c9ccd1;
+    --rule-soft: #e3e5e8;
+    --accent: #1a3f6b;
+    --code-bg: #f6f7f9;
+  }
+
+  /* Force shaded panels and code blocks to render when printing, so the PDF
+     matches the screen whether or not "Background graphics" is ticked. */
+  * {
+    box-sizing: border-box;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  body {
+    font-family: "Charter", "Georgia", "Times New Roman", serif;
+    color: var(--ink);
+    background: #fff;
+    font-size: 10.5pt;
+    line-height: 1.45;
+    max-width: 175mm;
+    margin: 0 auto;
+    padding: 0 4mm;
+  }
+
+  h1 { font-size: 17pt; line-height: 1.25; margin: 0 0 2mm; letter-spacing: -0.01em; }
+  h2 {
+    font-size: 12.5pt;
+    margin: 7mm 0 2.5mm;
+    padding-bottom: 1.2mm;
+    border-bottom: 1.2px solid var(--rule);
+    color: var(--accent);
+  }
+  h3 { font-size: 11pt; margin: 5mm 0 1.5mm; color: var(--ink); }
+  p { margin: 0 0 2.5mm; text-align: justify; }
+  ul, ol { margin: 0 0 2.5mm; padding-left: 6mm; }
+  li { margin-bottom: 1.2mm; }
+
+  code, .mono {
+    font-family: "Consolas", "DejaVu Sans Mono", "Courier New", monospace;
+    font-size: 9pt;
+  }
+  code { background: var(--code-bg); padding: 0.4mm 1mm; border-radius: 2px; }
+
+  .titleblock {
+    border-top: 2.5px solid var(--ink);
+    border-bottom: 1px solid var(--rule);
+    padding: 3mm 0 2.5mm;
+    margin-bottom: 5mm;
+  }
+  .subtitle { font-size: 10pt; color: var(--muted); margin: 0 0 3mm; }
+  .meta { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.8mm 8mm; font-size: 9.5pt; }
+  .meta div { display: flex; gap: 2mm; }
+  .meta .k { color: var(--muted); min-width: 26mm; }
+  .meta .v { font-weight: 600; }
+
+  .abstract {
+    background: var(--code-bg);
+    border-left: 3px solid var(--accent);
+    padding: 3mm 4mm;
+    margin: 0 0 5mm;
+    font-size: 10pt;
+  }
+  .abstract p:last-child { margin-bottom: 0; }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 9.5pt;
+    margin: 0 0 3mm;
+    page-break-inside: avoid;
+  }
+  th {
+    text-align: left;
+    border-bottom: 1.2px solid var(--rule);
+    padding: 1.4mm 2mm 1.4mm 0;
+    font-weight: 700;
+    font-size: 9pt;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: var(--muted);
+  }
+  td { padding: 1.3mm 2mm 1.3mm 0; border-bottom: 0.6px solid var(--rule-soft); vertical-align: top; }
+  td.num, th.num { text-align: right; padding-right: 4mm; font-variant-numeric: tabular-nums; }
+  tr:last-child td { border-bottom: 1.2px solid var(--rule); }
+  table.tight td, table.tight th { font-family: "Consolas", monospace; font-size: 8.6pt; }
+  td.c, th.c { font-family: "Consolas", monospace; font-size: 8.8pt; }
+
+  pre {
+    background: var(--code-bg);
+    border: 0.8px solid var(--rule-soft);
+    border-radius: 3px;
+    padding: 2.5mm 3mm;
+    font-family: "Consolas", "DejaVu Sans Mono", monospace;
+    font-size: 8.3pt;
+    line-height: 1.35;
+    overflow-x: auto;
+    margin: 0 0 3mm;
+    page-break-inside: avoid;
+    white-space: pre;
+  }
+
+  figure { margin: 0 0 4mm; page-break-inside: avoid; }
+  /* Cap by height as well as width so a tall screenshot cannot exceed a page. */
+  figure img {
+    display: block;
+    max-width: 100%;
+    max-height: 132mm;
+    width: auto;
+    height: auto;
+    margin: 0 auto;
+    border: 0.8px solid var(--rule);
+    background: #fff;
+  }
+  figcaption { font-size: 8.8pt; color: var(--muted); margin-top: 1.2mm; text-align: left; }
+  figcaption b { color: var(--ink); }
+
+  .keyfacts { display: grid; grid-template-columns: repeat(4, 1fr); gap: 3mm; margin: 0 0 5mm; }
+  .kf { border: 0.8px solid var(--rule); border-top: 2.2px solid var(--accent); padding: 2.5mm; text-align: center; }
+  .kf .n { font-size: 13pt; font-weight: 700; line-height: 1.1; font-variant-numeric: tabular-nums; }
+  .kf .l { font-size: 8pt; color: var(--muted); margin-top: 1mm; line-height: 1.25; }
+
+  .note {
+    border-left: 2.5px solid var(--rule);
+    padding-left: 3mm;
+    color: var(--muted);
+    font-size: 9.5pt;
+    margin: 0 0 3mm;
+  }
+
+  .pagebreak { page-break-before: always; }
+
+  footer {
+    margin-top: 7mm;
+    padding-top: 2mm;
+    border-top: 0.8px solid var(--rule);
+    font-size: 8.5pt;
+    color: var(--muted);
+    display: flex;
+    justify-content: space-between;
+  }
+
+  @media print {
+    body { padding: 0; }
+    h2, h3 { page-break-after: avoid; }
+  }
+</style>
+
+<div class="titleblock">
+  <h1>A Multi-Cycle RV32I Processor and System-on-Chip with Memory-Mapped UART and GPIO Peripherals</h1>
+  <p class="subtitle">Design, integration and bring-up of a RISC-V soft core with a unified peripheral bus in Verilog</p>
+  <div class="meta">
+    <div><span class="k">Author</span><span class="v">Prasit Mazumder (22EC37029)</span></div>
+    <div><span class="k">ISA</span><span class="v">RV32I (base integer subset)</span></div>
+    <div><span class="k">Project type</span><span class="v">Self project</span></div>
+    <div><span class="k">Language</span><span class="v">Verilog-2001</span></div>
+    <div><span class="k">Institute</span><span class="v">IIT Kharagpur</span></div>
+    <div><span class="k">Toolchain</span><span class="v">Icarus Verilog, GTKWave, Xilinx Vivado</span></div>
+  </div>
+</div>
+
+<div class="abstract">
+  <p>This report documents a RISC-V soft processor and the system-on-chip built around it. The core implements the RV32I base integer instruction set as an eight-state multi-cycle finite state machine, with a 32-entry register file, full sub-word load and store support with sign and zero extension, and the complete branch and jump set. The processor drives a single unified address/data bus with byte-granular write strobes, onto which four devices are decoded: a 4 KB program memory, an LED GPIO controller, and memory-mapped wrappers around a UART transmitter and receiver. Peripheral registers are reached by ordinary <code>lw</code> and <code>sw</code> instructions rather than dedicated I/O opcodes, so no ISA extension is required. The system was brought up with a hand-assembled firmware image that performs an arithmetic sequence and writes the result to the LED region, and verified by unit-level simulation in Icarus Verilog with waveform inspection in GTKWave, bus-level tracing of every store transaction, and schematic elaboration in Vivado.</p>
+</div>
+
+<div class="keyfacts">
+  <div class="kf"><div class="n">RV32I</div><div class="l">R, I, S, B, U and J<br>instruction formats</div></div>
+  <div class="kf"><div class="n">8-state</div><div class="l">multi-cycle FSM<br>4–6 cycles per instruction</div></div>
+  <div class="kf"><div class="n">4</div><div class="l">bus devices on one<br>shared address space</div></div>
+  <div class="kf"><div class="n">8</div><div class="l">Verilog modules,<br>fully hierarchical</div></div>
+</div>
+
+<h2>1. Objective and Scope</h2>
+
+<p>The goal was to build a working processor from the instruction set upward — not to instantiate a vendor soft core — and then to extend it into a system that talks to the outside world. That second half is where most of the engineering lies: a CPU that only executes arithmetic in a register file cannot be observed, so the project is really about the bus, the address decoding and the peripheral interfaces that make execution visible.</p>
+
+<p>Two configurations were built and elaborated. The first is a minimal bring-up system of processor plus program memory, used to validate instruction fetch, decode and execution in isolation. The second adds the peripheral fabric: address decoding, a read-back multiplexer, and three memory-mapped devices.</p>
+
+<figure>
+  <img src="RV32I_elaborated_design_without_peripherals.png" alt="Elaborated schematic of the CPU and program memory only">
+  <figcaption><b>Figure 1.</b> Minimal bring-up configuration: the <code>cpu</code> core and <code>progmem</code> connected directly, with the instruction/data bus (<code>mem_addr</code>, <code>mem_rdata</code>, <code>mem_wdata</code>, <code>mem_rstrb</code>, <code>mem_wstrb</code>) closed in a loop and the internal cycle counter brought out to a port for observation. No address decoding is present, so every access targets memory.</figcaption>
+</figure>
+
+<h2>2. Processor Microarchitecture</h2>
+
+<h3>2.1 Instruction Set Coverage</h3>
+
+<p>The core decodes all six RV32I instruction formats. Opcode classification is done on <code>data[6:2]</code>, since the low two bits are constant for the base ISA:</p>
+
+<table>
+  <thead><tr><th>Class</th><th>Instructions</th><th>Notes</th></tr></thead>
+  <tbody>
+    <tr><td>R-type</td><td>ADD, SUB, XOR, OR, AND, SLT, SLTU, SLL, SRL, SRA</td><td>Register-register ALU; SUB and SRA selected on <code>funct7[5]</code></td></tr>
+    <tr><td>I-type</td><td>ADDI, XORI, ORI, ANDI, SLTI, SLTIU, SLLI, SRLI, SRAI</td><td>Shift amount taken from the low five bits of the immediate</td></tr>
+    <tr><td>Load</td><td>LB, LH, LW, LBU, LHU</td><td>Sign or zero extension selected by <code>data[14]</code></td></tr>
+    <tr><td>Store</td><td>SB, SH, SW</td><td>Byte-granular write mask generated from address bits [1:0]</td></tr>
+    <tr><td>Branch</td><td>BEQ, BNE, BLT, BGE, BLTU, BGEU</td><td>Signed and unsigned comparison from a shared subtractor</td></tr>
+    <tr><td>Jump</td><td>JAL, JALR</td><td>Return address <code>PC+4</code> written to <code>rd</code></td></tr>
+    <tr><td>Upper immediate</td><td>LUI, AUIPC</td><td>AUIPC adds the U-immediate to the current PC</td></tr>
+    <tr><td>System</td><td>SYSTEM opcode</td><td>Enters a terminal <code>HLT</code> state; used as a program-end marker</td></tr>
+  </tbody>
+</table>
+
+<p>Five immediate generators run in parallel on every fetched word, each sign-extending from bit 31 and reassembling the scattered immediate fields defined by the format — including the bit-swizzling required for B-type and J-type, where the immediate is stored out of order to keep the register specifiers in fixed positions across formats.</p>
+
+<h3>2.2 Multi-Cycle Control</h3>
+
+<p>Control is an eight-state finite state machine rather than a pipeline. This trades throughput for simplicity: because only one instruction is in flight at a time, there are no data hazards, no forwarding paths and no branch misprediction to handle.</p>
+
+<table class="tight">
+  <thead><tr><th>State</th><th class="num">Code</th><th>Action</th></tr></thead>
+  <tbody>
+    <tr><td>RESET</td><td class="num">0</td><td>Entry state after reset release</td></tr>
+    <tr><td>WAIT</td><td class="num">1</td><td>Assert <code>mem_rstrb</code>; memory read latency absorbed here</td></tr>
+    <tr><td>FETCH</td><td class="num">2</td><td>Latch <code>mem_rdata</code> into the instruction register</td></tr>
+    <tr><td>DECODE</td><td class="num">3</td><td>Read <code>rs1</code> and <code>rs2</code> from the register file</td></tr>
+    <tr><td>EXECUTE</td><td class="num">4</td><td>Compute ALU result, resolve branch, update PC, write back ALU results</td></tr>
+    <tr><td>BYTE</td><td class="num">5</td><td>Present the load/store address on the bus</td></tr>
+    <tr><td>WAIT_LOADING</td><td class="num">6</td><td>Drive <code>mem_wstrb</code> for stores; write back load data</td></tr>
+    <tr><td>HLT</td><td class="num">7</td><td>Terminal state; freezes the cycle counter</td></tr>
+  </tbody>
+</table>
+
+<p>ALU, branch and upper-immediate instructions complete the loop <code>WAIT → FETCH → DECODE → EXECUTE → WAIT</code> in <b>four cycles</b>. Loads, stores and both jump instructions take the extended path through <code>BYTE</code> and <code>WAIT_LOADING</code>, costing <b>six cycles</b>. A free-running cycle counter increments in every state except <code>HLT</code>, giving a simple execution-time measurement for firmware.</p>
+
+<h3>2.3 Datapath Details</h3>
+
+<p><b>Shared subtractor.</b> A single 33-bit subtraction <code>{1'b0, a} + {1'b1, ~b} + 1</code> serves three purposes: the SUB result, the borrow-out in bit 32 as the unsigned less-than flag, and a zero test across bits [31:0] as the equality flag. Signed comparison is derived by checking whether the operand sign bits differ — if they do, the sign of the first operand decides; if not, the borrow-out decides.</p>
+
+<p><b>Sub-word access.</b> Loads extract the addressed halfword using address bit 1, then the addressed byte using bit 0, and sign- or zero-extend according to <code>funct3</code>. Stores generate a four-bit write mask positioned by the same address bits, and replicate the source byte across the appropriate lanes of <code>mem_wdata</code> so that the memory needs no barrel shifter of its own — the alignment work is done entirely on the CPU side.</p>
+
+<p><b>Register file.</b> Thirty-two 32-bit registers with a hardwired zero: the write-enable term is qualified with <code>rd != 0</code>, so writes to <code>x0</code> are silently discarded as the ISA requires. Write-back is enabled in <code>EXECUTE</code> for ALU, jump and upper-immediate instructions, and deferred to <code>WAIT_LOADING</code> for loads, where the returned data is available.</p>
+
+<h2 class="pagebreak">3. Bus Architecture and Address Map</h2>
+
+<p>All four devices share one address bus, one write-data bus, one read strobe and one four-bit write strobe. Device selection is a comparison on the top four address bits, which makes each decoder a single 4-bit equality comparator at the cost of dividing the space into sixteen coarse 256 MB regions. Read data is returned through a priority multiplexer at the top level that selects among the program memory, the LED register, the UART TX status register and the UART RX data/status registers.</p>
+
+<table>
+  <thead><tr><th class="c">Base address</th><th class="c">addr[31:28]</th><th>Device</th><th>Register</th><th>Access</th></tr></thead>
+  <tbody>
+    <tr><td class="c">0x0000_0000</td><td class="c">0000</td><td>progmem</td><td>1024 &times; 32-bit word array</td><td>R / W</td></tr>
+    <tr><td class="c">0x1000_0000</td><td class="c">0001</td><td>led_gpio</td><td>LED data register (low 8 bits used)</td><td>R / W</td></tr>
+    <tr><td class="c">0x2000_0000</td><td class="c">0010</td><td>uart_tx_gpio</td><td>TX DATA — byte to transmit</td><td>W</td></tr>
+    <tr><td class="c">0x3000_0000</td><td class="c">0011</td><td>uart_tx_gpio</td><td>TX CTRL — bit 0 = valid / start</td><td>W</td></tr>
+    <tr><td class="c">0x4000_0000</td><td class="c">0100</td><td>uart_tx_gpio</td><td>TX STATUS — bit 0 = ready</td><td>R</td></tr>
+    <tr><td class="c">0x5000_0000</td><td class="c">0101</td><td>uart_rx_gpio</td><td>RX DATA — received byte</td><td>R</td></tr>
+    <tr><td class="c">0x6000_0000</td><td class="c">0110</td><td>uart_rx_gpio</td><td>RX CTRL — bit 0 = ready / acknowledge</td><td>W</td></tr>
+    <tr><td class="c">0x7000_0000</td><td class="c">0111</td><td>uart_rx_gpio</td><td>RX STATUS — bit 0 = data valid</td><td>R</td></tr>
+  </tbody>
+</table>
+
+<p>Because peripheral registers live in the ordinary load/store address space, firmware drives them with plain <code>lw</code> and <code>sw</code> instructions and no I/O-specific opcodes are needed. The two UART wrappers perform their own internal address decoding, so the top level passes them the unqualified strobes; the memory and LED controller receive strobes already gated by their region select.</p>
+
+<figure>
+  <img src="RV32I_elaborated_design_with_peripherals_newest.png" alt="Elaborated schematic of the full SoC with peripherals">
+  <figcaption><b>Figure 2.</b> Full SoC after elaboration. Left: the region comparators (<code>isMEM</code>, <code>isLED</code>, <code>isUART_RXDATA</code>, <code>isUART_RXSTATUS</code>, <code>isUART_TXSTATUS</code>) and the AND terms that gate each device's read and write strobes. Centre: the read-back path, inferred as a cascade of four multiplexers (<code>cpu_rdata0_i</code> through <code>cpu_rdata_i</code>) plus an OR term merging the two UART receive regions, feeding the selected device's data back to the core. Right: <code>cpu0</code>, <code>mem0</code>, <code>uart_rx0</code>, <code>uart_tx0</code> and <code>led0</code> all attached to the same address and write-data buses, with <code>uart_tx</code>, <code>uart_rx</code> and <code>LEDS[5:0]</code> leaving the chip through the active-low inverter. This is the post-fix netlist: <code>led0.data_out[31:0]</code> now drives the read-back cascade, adding the fourth multiplexer stage. In the earlier elaboration that port was left dangling and a load from the LED region returned zero — the behaviour described in §4.2 and now asserted continuously by Test 1 in §6.2.</figcaption>
+</figure>
+
+<h2>4. Peripherals</h2>
+
+<h3>4.1 Program Memory</h3>
+
+<p>A 1024-word (4 KB) synchronous array serving as both instruction and data store. Reads are word-wide and registered; writes are byte-granular, with each bit of <code>wr_strobe</code> enabling one byte lane so that <code>sb</code> and <code>sh</code> do not corrupt neighbouring bytes. The word index is <code>addr[31:2]</code>, discarding the two low bits. Contents are initialized from <code>firmware.hex</code> via <code>$readmemh</code> at simulation start.</p>
+
+<h3>4.2 LED GPIO</h3>
+
+<p>A single 32-bit register whose low eight bits drive the LED pins. The top level inverts the outputs before they leave the chip, since the LEDs on the target board are active-low. The register is both readable and writable, so firmware can read-modify-write individual bits. The read and write paths are independent rather than chained, so a read asserted in the same cycle as a write cannot suppress the write; a simultaneous access returns the pre-write value.</p>
+
+<h3>4.3 UART Transmitter</h3>
+
+<p>A parameterized 8N1 transmitter. The baud divider is computed at elaboration as <code>clk_freq_hz / baud_rate</code> — 2812 cycles per bit for the default 27 MHz clock at 9600 baud — and the counter width is derived with <code>$clog2</code>, so retargeting to another clock or baud rate requires only a parameter change.</p>
+
+<p>The frame is held in a 10-bit shift register loaded as <code>{stop, data[7:0], start}</code> and shifted right on each baud tick, so bits leave LSB-first in the correct UART order. The output expression <code>data[0] | !(|data)</code> drives the line to its idle-high state whenever the shift register has drained, avoiding a separate idle-state flag. A <code>ready</code> handshake tells the wrapper when the next byte may be loaded.</p>
+
+<h3>4.4 UART Receiver</h3>
+
+<p>A five-state receiver: <code>IDLE → START → REC_BYTE → STOP → DATA</code>. Two cascaded flip-flops both synchronize the asynchronous serial input and provide falling-edge detection to spot the start bit. Each data bit is sampled at <code>CYCLE/2</code>, the midpoint of the bit period, which is the standard defence against edge jitter and small baud mismatches. After the stop bit the receiver parks in <code>DATA</code> holding <code>rx_data_valid</code> high, and only returns to <code>IDLE</code> once firmware acknowledges by writing the RX control register — a valid/ready handshake that prevents a byte being overwritten before software has read it.</p>
+
+<h2>5. Firmware and Bring-Up</h2>
+
+<p>The system is exercised by a firmware image loaded into program memory at elaboration. It performs a register-register arithmetic sequence, forms a peripheral base address with <code>lui</code>, and writes the result to the LED region — touching the ALU, the register file, immediate generation, PC sequencing and the memory-mapped store path in eight instructions. The image is assembled from commented source (<code>firmware_led.s</code>) by the small RV32I assembler described in §7.1; a second image, <code>firmware_uart.s</code>, drives the UART echo test in §6.2.</p>
+
+<table class="tight">
+  <thead><tr><th>PC</th><th>Encoding</th><th>Disassembly</th><th>Effect</th></tr></thead>
+  <tbody>
+    <tr><td>0x00</td><td>00500093</td><td>addi x1, x0, 5</td><td>x1 &larr; 5</td></tr>
+    <tr><td>0x04</td><td>00700113</td><td>addi x2, x0, 7</td><td>x2 &larr; 7</td></tr>
+    <tr><td>0x08</td><td>002081b3</td><td>add&nbsp; x3, x1, x2</td><td>x3 &larr; 12</td></tr>
+    <tr><td>0x0C</td><td>10000237</td><td>lui&nbsp; x4, 0x10000</td><td>x4 &larr; 0x1000_0000 (LED base)</td></tr>
+    <tr><td>0x10</td><td>00322023</td><td>sw&nbsp;&nbsp; x3, 0(x4)</td><td>LED register &larr; 12</td></tr>
+    <tr><td>0x14</td><td>0000006f</td><td>jal&nbsp; x0, 0</td><td>spin in place (program end)</td></tr>
+    <tr><td>0x18</td><td>00000013</td><td>nop</td><td>padding</td></tr>
+    <tr><td>0x1C</td><td>00000013</td><td>nop</td><td>padding</td></tr>
+  </tbody>
+</table>
+
+<p>The expected observable result is that the LED register holds 12 = <code>0b0000_1100</code>, lighting LED&nbsp;2 and LED&nbsp;3 once the active-low inversion at the pins is accounted for. Because the store targets <code>0x1000_0000</code>, it also confirms that the address decoder routes the transaction to the LED controller rather than to program memory, and that <code>sw</code> asserts all four write-strobe bits.</p>
+
+<h2>6. Verification</h2>
+
+<p><b>Unit-level simulation.</b> The LED GPIO was exercised by a dedicated testbench in Icarus Verilog with the waveform dumped to VCD and inspected in GTKWave. The trace confirms the full register cycle: with <code>addr = 0x1000_0000</code> and <code>wr_strobe = 4'b1111</code>, the value <code>0x3C</code> presented on <code>data_in</code> is latched into <code>led_data_reg</code> on the next rising edge and appears immediately on the <code>leds</code> output; a subsequent read with <code>rd_strobe</code> asserted returns <code>0x3C</code> on <code>data_out</code>. Both the write path and the read-back path are therefore covered.</p>
+
+<pre>time (ns)   rst  wr_strobe  rd_strobe   addr         data_in    led_data_reg  leds     data_out
+   0         1     x           x        x            x          x             x        x
+  10         0     1111        0        0x10000000   0x3C       —             —        —
+  15         0     1111        0        0x10000000   0x3C       0x3C          0x3C     —
+  20         0     0000        0        0x10000000   0x3C       0x3C          0x3C     —
+  30         0     0000        1        0x10000000   0x3C       0x3C          0x3C     —
+  35         0     0000        1        0x10000000   0x3C       0x3C          0x3C     0x3C</pre>
+
+<p><b>Bus-level transaction tracing.</b> The core is instrumented so that every store, at the point where the write strobe is actually driven, prints its state, target address, generated byte mask, final <code>mem_wstrb</code> and write data. This produces a transaction log that can be read directly against the firmware listing to confirm that each memory-mapped write lands at the intended peripheral with the correct mask — the mechanism by which sub-word store alignment was debugged.</p>
+
+<p><b>Structural elaboration.</b> Both configurations were elaborated in Vivado to confirm the intended structure was inferred: that the register file synthesizes as expected, that exactly one comparator is generated per address region, and that all peripherals attach to a single shared bus rather than being accidentally duplicated. Figures 1 and 2 are those elaborated schematics.</p>
+
+<h3>6.1 A Decode Collision in Address Generation</h3>
+
+<p>System-level simulation of the firmware exposed a defect that unit-level testing of the peripherals could not: the store at <code>0x10</code> was reaching address <code>0x00000000</code> instead of the LED base at <code>0x10000000</code>, so the LED register never received its value and the program appeared to do nothing.</p>
+
+<p>The cause was operand-independent and structural. For loads, stores and JALR, the <code>funct3</code> field encodes the <em>access width</em> rather than an ALU function, so those encodings alias onto the arithmetic cases. In the original priority chain the address-generation term was placed <b>last</b>, which meant the aliases won:</p>
+
+<table class="tight">
+  <thead><tr><th>Instruction</th><th class="c">funct3</th><th>Matched case</th><th>Computed</th><th>Required</th></tr></thead>
+  <tbody>
+    <tr><td>SW</td><td class="c">010</td><td>SLT</td><td>comparison flag</td><td>base + offset</td></tr>
+    <tr><td>LH, LHU</td><td class="c">001</td><td>SLL</td><td>shifted value</td><td>base + offset</td></tr>
+    <tr><td>LBU</td><td class="c">100</td><td>XOR</td><td>bitwise XOR</td><td>base + offset</td></tr>
+    <tr><td>SB (offset bit 10 set)</td><td class="c">000</td><td>SUB</td><td>difference</td><td>base + offset</td></tr>
+  </tbody>
+</table>
+
+<p>The <code>~isLtype</code> and <code>~isStype</code> guards scattered through the chain had been added as point fixes for individual collisions, which is why <code>LW</code> and <code>SH</code> happened to work while their siblings did not. The correct fix is structural rather than case-by-case: test <code>(isStype | isLtype | isJALR)</code> <b>first</b> and unconditionally select the adder, because for that entire instruction class the ALU has only one job. With the address term promoted, the downstream guards become redundant and were removed.</p>
+
+<p>A second conformance defect was found in the same pass: the R-type shift amount was taken from the full 32-bit <code>rs2</code> value rather than its low five bits, so any <code>SLL</code>, <code>SRL</code> or <code>SRA</code> with <code>rs2 &ge; 32</code> returned zero instead of shifting by <code>rs2 mod 32</code> as the specification requires.</p>
+
+<p>After both fixes the firmware behaves as intended. The store issues to <code>0x10000000</code> with <code>mem_wstrb = 4'b1111</code> and <code>mem_wdata = 0x0000000C</code>, the LED register reads back 12, and the output pins settle at <code>6'b110011</code> — the active-low encoding of 12.</p>
+
+<pre>CPU STORE:
+  mem_addr    = 10000000        &lt;- LED base, correctly decoded
+  mem_wstrb   = 1111            &lt;- full-word store
+  mem_wdata   = 0000000c        &lt;- 12
+
+led_data_reg  = 12
+LEDS          = 110011          &lt;- active-low 12, LED2 and LED3 lit</pre>
+
+<p>The wider lesson is the one worth recording: a peripheral can be correct in isolation and a processor can execute arithmetic correctly, while the interface between them is still broken. Only running real firmware across the assembled bus surfaced it.</p>
+
+<h3>6.2 System-Level Regression</h3>
+
+<p>The defect in §6.1 was invisible to unit-level testing, so a self-checking system-level testbench (<code>tb_soc.v</code>) was added to close that gap permanently. It elaborates two instances of the SoC, each preloaded with a different firmware image, and asserts the resulting architectural state automatically.</p>
+
+<p><b>Test 1 — LED store path.</b> Runs the bring-up firmware and checks that the LED register receives 12, that the output pins settle at the active-low encoding <code>6'b110011</code>, and — via a continuous assertion on the bus — that whenever the LED region is addressed, <code>cpu_rdata</code> actually presents <code>led_rdata</code> rather than falling through to zero.</p>
+
+<p><b>Test 2 — UART echo.</b> Runs a firmware image that polls the receiver status register, reads the byte, mirrors it to the LEDs, performs the acknowledge handshake, then polls the transmitter and sends the byte back. The testbench drives a genuine 9600-baud frame into <code>uart_rx</code> (2,812 clocks per bit at 27 MHz) and independently recovers the frame that emerges on <code>uart_tx</code> by sampling at each bit midpoint. Because the firmware can begin retransmitting while the inbound stop bit is still on the wire, the receive monitor is forked before transmission starts; both tasks are declared <code>automatic</code> so their loop state is not shared between the concurrent threads.</p>
+
+<pre>==========================================================
+ RV32I SoC -- system-level testbench
+ 2812 clocks per bit (27 MHz / 9600 baud)
+==========================================================
+
+---- TEST 1: LED store path (firmware.hex) ----
+  [ PASS] LED register holds 5 + 7
+  [ PASS] LED pins show active-low 12
+  [ PASS] store decoded to LED region
+
+---- TEST 2: UART echo (firmware_uart.hex) ----
+  driving 0x5a into uart_rx ...
+  [ PASS] received byte mirrored to LEDs
+  waiting for uart_tx to echo it back ...
+  recovered 0x5a from uart_tx
+  [ PASS] echoed byte matches
+
+==========================================================
+ checks run : 5
+ failures   : 0
+ RESULT     : *** ALL TESTS PASSED ***
+==========================================================</pre>
+
+<p>This is the first evidence that the UART peripherals work functionally rather than merely elaborating correctly: a byte makes the complete round trip from an external serial line, through the receiver, across the bus into the register file, back out across the bus to the transmitter, and onto the serial line again — driven entirely by firmware using ordinary loads and stores.</p>
+
+<div class="note"><b>Remaining gaps.</b> Coverage is directed rather than exhaustive. There is no randomized instruction-level regression against a reference model such as the official RISC-V compliance suite, so ISA conformance is argued from inspection and from the directed tests rather than proven. The UART tests exercise a single byte at one baud rate. No FPGA hardware bring-up or post-synthesis timing data is included, so all results here are behavioural.</div>
+
+<h2>7. Module Hierarchy and File Manifest</h2>
+
+<pre>top                          SoC: address decode, read-back mux, pin inversion
+ │
+ ├── cpu                     RV32I multi-cycle core, 8-state FSM, 32×32 register file
+ ├── progmem                 1024-word unified instruction/data memory
+ ├── uart_tx_gpio            memory-mapped TX wrapper (DATA / CTRL / STATUS)
+ │    └── uart_tx            8N1 transmitter, parameterized baud divider
+ ├── uart_rx_gpio            memory-mapped RX wrapper (DATA / CTRL / STATUS)
+ │    └── uart_rx            8N1 receiver, 5-state FSM, mid-bit sampling
+ └── led_gpio                8-bit LED output register</pre>
+
+<table class="tight">
+  <thead><tr><th>File</th><th>Role</th></tr></thead>
+  <tbody>
+    <tr><td>top.v</td><td>SoC integration, address decoding, read-back multiplexing</td></tr>
+    <tr><td>cpu.v</td><td>RV32I core: decode, immediates, ALU, branch logic, FSM, register file</td></tr>
+    <tr><td>progmem.v</td><td>Program/data memory with byte-enable writes and <code>$readmemh</code> init</td></tr>
+    <tr><td>uart_tx.v / uart_tx_gpio.v</td><td>UART transmitter and its memory-mapped register interface</td></tr>
+    <tr><td>uart_rx.v / uart_rx_gpio.v</td><td>UART receiver and its memory-mapped register interface</td></tr>
+    <tr><td>led_gpio.v</td><td>LED output register peripheral</td></tr>
+    <tr><td>tb_soc.v</td><td>Self-checking system-level testbench: LED store path and UART echo</td></tr>
+    <tr><td>asm.py</td><td>Minimal RV32I assembler; <code>--selftest</code> validates it against the known-good image</td></tr>
+    <tr><td>firmware_led.s / firmware.hex</td><td>Bring-up program source and assembled image (listing in §5)</td></tr>
+    <tr><td>firmware_uart.s / firmware_uart.hex</td><td>UART echo program source and assembled image</td></tr>
+    <tr><td>tb_led_gpio.vcd</td><td>GTKWave trace of the LED GPIO unit test</td></tr>
+  </tbody>
+</table>
+
+<h3>7.1 Reproducing the Results</h3>
+
+<pre>python asm.py --selftest                  # verify the assembler
+python asm.py firmware_led.s  firmware.hex
+python asm.py firmware_uart.s firmware_uart.hex
+
+iverilog -I. -o tb_soc.out tb_soc.v top.v
+vvp tb_soc.out                            # expect: ALL TESTS PASSED (5 checks)</pre>
+
+<p class="note">The firmware images were originally hand-encoded hex with no recorded source. They are now generated from commented assembly by <code>asm.py</code>, which is validated by regenerating the original bring-up image and comparing it word for word against the known-good encoding. Program memory takes the image name as a parameter, so a testbench can select a firmware without editing the RTL.</p>
+
+<h2>8. Design Notes and Known Limitations</h2>
+
+<p>The following are deliberate simplifications rather than defects, recorded here because they define the boundary of what the design does.</p>
+
+<ul>
+  <li><b>Multi-cycle, not pipelined.</b> Four to six cycles per instruction. The benefit is that no hazard detection, forwarding or flush logic is required; the cost is throughput. Pipelining is the obvious next extension and would require exactly the machinery this design avoids.</li>
+  <li><b>Unified memory.</b> Instructions and data share one <code>progmem</code>, so the design is von Neumann rather than Harvard. With a multi-cycle core this causes no structural hazard, because fetch and data access occur in different states.</li>
+  <li><b>Coarse address decoding.</b> Using only <code>addr[31:28]</code> gives sixteen regions of 256 MB each, and every peripheral register aliases across its entire region. This is wasteful of address space but reduces each decoder to one 4-bit comparator — a reasonable trade at this scale.</li>
+  <li><b>No CSRs or trap handling.</b> The SYSTEM opcode is treated as a halt marker rather than dispatching to a trap vector, and there is no interrupt controller; peripheral interaction is by polling status registers.</li>
+  <li><b>Reset polarity is inverted relative to its comment.</b> The <code>rst</code> port of <code>top</code> is documented as active-high, but every submodule is instantiated as <code>.rst(!rst)</code>, making the external pin active-<em>low</em> in practice. The behaviour is consistent throughout; only the comment is wrong.</li>
+  <li><b>Simulation-only instrumentation.</b> The store-tracing <code>$display</code> statements in the core are ignored by synthesis but should be guarded or removed before an FPGA build.</li>
+</ul>
+
+<footer>
+  <span>Prasit Mazumder &middot; 22EC37029 &middot; RV32I SoC with Peripheral Integration</span>
+  <span>Self project &middot; IIT Kharagpur</span>
+</footer>
