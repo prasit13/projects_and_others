@@ -1,7 +1,0 @@
-Running: xsim.dir/tb_gf283_top_behav/xsimk.exe -simmode gui -wdb tb_gf283_top_behav.wdb -simrunnum 0 -socket 54792
-Design successfully loaded
-Design Loading Memory Usage: 10424 KB (Peak: 10424 KB)
-Design Loading CPU Usage: 92 ms
-Simulation completed
-Simulation Memory Usage: 20056 KB (Peak: 20056 KB)
-Simulation CPU Usage: 3296 ms
