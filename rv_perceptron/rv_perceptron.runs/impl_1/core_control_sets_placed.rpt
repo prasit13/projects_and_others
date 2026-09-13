@@ -1,0 +1,111 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2023.2 (win64) Build 4029153 Fri Oct 13 20:14:34 MDT 2023
+| Date         : Sat Sep 12 12:40:18 2026
+| Host         : DESKTOP-LP0DM3H running 64-bit major release  (build 9200)
+| Command      : report_control_sets -verbose -file core_control_sets_placed.rpt
+| Design       : core
+| Device       : xc7a35t
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+Control Set Information
+
+Table of Contents
+-----------------
+1. Summary
+2. Histogram
+3. Flip-Flop Distribution
+4. Detailed Control Set Information
+
+1. Summary
+----------
+
++----------------------------------------------------------+-------+
+|                          Status                          | Count |
++----------------------------------------------------------+-------+
+| Total control sets                                       |    33 |
+|    Minimum number of control sets                        |    33 |
+|    Addition due to synthesis replication                 |     0 |
+|    Addition due to physical synthesis replication        |     0 |
+| Unused register locations in slices containing registers |    21 |
++----------------------------------------------------------+-------+
+* Control sets can be merged at opt_design using control_set_merge or merge_equivalent_drivers
+** Run report_qor_suggestions for automated merging and remapping suggestions
+
+
+2. Histogram
+------------
+
++--------------------+-------+
+|       Fanout       | Count |
++--------------------+-------+
+| Total control sets |    33 |
+| >= 0 to < 4        |     0 |
+| >= 4 to < 6        |     2 |
+| >= 6 to < 8        |     0 |
+| >= 8 to < 10       |     3 |
+| >= 10 to < 12      |     1 |
+| >= 12 to < 14      |     0 |
+| >= 14 to < 16      |     0 |
+| >= 16              |    27 |
++--------------------+-------+
+* Control sets can be remapped at either synth_design or opt_design
+
+
+3. Flip-Flop Distribution
+-------------------------
+
++--------------+-----------------------+------------------------+-----------------+--------------+
+| Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
++--------------+-----------------------+------------------------+-----------------+--------------+
+| No           | No                    | No                     |               0 |            0 |
+| No           | No                    | Yes                    |               0 |            0 |
+| No           | Yes                   | No                     |             961 |          339 |
+| Yes          | No                    | No                     |              32 |            8 |
+| Yes          | No                    | Yes                    |               0 |            0 |
+| Yes          | Yes                   | No                     |             746 |          276 |
++--------------+-----------------------+------------------------+-----------------+--------------+
+
+
+4. Detailed Control Set Information
+-----------------------------------
+
++--------------+-------------------------------------------------------+------------------------------------+------------------+----------------+--------------+
+| Clock Signal |                     Enable Signal                     |          Set/Reset Signal          | Slice Load Count | Bel Load Count | Bels / Slice |
++--------------+-------------------------------------------------------+------------------------------------+------------------+----------------+--------------+
+|  clk         | execute/alu/branchSv_reg_0                            |                                    |                1 |              4 |         4.00 |
+|  clk         | execute/alu/branchSv_reg                              |                                    |                1 |              4 |         4.00 |
+|  clk         | gPerceptron.bPredict/tDoTrain                         | gPerceptron.bPredict/tc[7]_i_1_n_0 |                3 |              8 |         2.67 |
+|  clk         | execute/alu/rst_0                                     |                                    |                2 |              8 |         4.00 |
+|  clk         | execute/alu/rst_2                                     |                                    |                2 |              8 |         4.00 |
+|  clk         | gPerceptron.bPredict/theta                            | rst                                |                4 |             10 |         2.50 |
+|  clk         | execute/alu/E[0]                                      | rst                                |                9 |             24 |         2.67 |
+|  clk         | wback/csrWriteSv_reg_10[0]                            | rst                                |               11 |             32 |         2.91 |
+|  clk         | wback/csrWriteSv_reg_3[0]                             | rst                                |               15 |             32 |         2.13 |
+|  clk         | wback/csrWriteSv_reg_0[0]                             | rst                                |               12 |             32 |         2.67 |
+|  clk         | wback/E[0]                                            | rst                                |               17 |             32 |         1.88 |
+|  clk         | wback/csrWriteSv_reg_5[0]                             | rst                                |               20 |             32 |         1.60 |
+|  clk         | wback/csrWriteSv_reg_6[0]                             | rst                                |               17 |             32 |         1.88 |
+|  clk         | wback/csrWriteSv_reg_8[0]                             | rst                                |               10 |             32 |         3.20 |
+|  clk         | wback/csrWriteSv_reg_2[0]                             | rst                                |               14 |             32 |         2.29 |
+|  clk         | wback/csrWriteSv_reg_9[0]                             | rst                                |               10 |             32 |         3.20 |
+|  clk         | wback/csrWriteSv_reg_7[0]                             | rst                                |               17 |             32 |         1.88 |
+|  clk         | wback/csrWriteSv_reg_4[0]                             | rst                                |               12 |             32 |         2.67 |
+|  clk         | wback/csrWriteSv_reg_1[0]                             | rst                                |               17 |             32 |         1.88 |
+|  clk         | execute/alu/rst_4[0]                                  |                                    |                8 |             32 |         4.00 |
+|  clk         | execute/alu/pcSv_reg[9]                               |                                    |               11 |             44 |         4.00 |
+|  clk         | execute/alu/pcSv_reg[8]_rep__1                        |                                    |               11 |             44 |         4.00 |
+|  clk         | execute/alu/pcSv_reg[8]_rep__1_0                      |                                    |               11 |             44 |         4.00 |
+|  clk         | execute/alu/pcSv_reg[8]_rep__1_1                      |                                    |               11 |             44 |         4.00 |
+|  clk         | decode/p_1_in                                         | rst                                |               35 |             79 |         2.26 |
+| ~clk         | wback/p_0_in0_out                                     |                                    |               11 |             88 |         8.00 |
+|  clk         | execute/alu/rst_1                                     |                                    |               25 |            100 |         4.00 |
+|  clk         | execute/alu/rst_3                                     |                                    |               25 |            100 |         4.00 |
+|  clk         |                                                       | execute/alu/a0                     |               75 |            219 |         2.92 |
+|  clk         | decode/p_1_in                                         | gPerceptron.bPredict/SR[0]         |               53 |            241 |         4.55 |
+|  clk         | gPerceptron.bPredict/wtable_reg_r1_0_63_0_2_i_4_n_0   |                                    |              134 |            536 |         4.00 |
+|  clk         | gPerceptron.bPredict/wtable_reg_r1_64_127_0_2_i_1_n_0 |                                    |              134 |            536 |         4.00 |
+|  clk         |                                                       | rst                                |              264 |            742 |         2.81 |
++--------------+-------------------------------------------------------+------------------------------------+------------------+----------------+--------------+
+
+

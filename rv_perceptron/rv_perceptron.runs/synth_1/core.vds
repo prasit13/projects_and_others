@@ -1,0 +1,353 @@
+#-----------------------------------------------------------
+# Vivado v2023.2 (64-bit)
+# SW Build 4029153 on Fri Oct 13 20:14:34 MDT 2023
+# IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
+# SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
+# Start of session at: Sat Sep 12 12:25:03 2026
+# Process ID: 17192
+# Current directory: C:/Users/Prasit/Documents/ACSA_RISCV/vivado_gui/rv_perceptron/rv_perceptron.runs/synth_1
+# Command line: vivado.exe -log core.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source core.tcl
+# Log file: C:/Users/Prasit/Documents/ACSA_RISCV/vivado_gui/rv_perceptron/rv_perceptron.runs/synth_1/core.vds
+# Journal file: C:/Users/Prasit/Documents/ACSA_RISCV/vivado_gui/rv_perceptron/rv_perceptron.runs/synth_1\vivado.jou
+# Running On: DESKTOP-LP0DM3H, OS: Windows, CPU Frequency: 2496 MHz, CPU Physical cores: 10, Host memory: 8245 MB
+#-----------------------------------------------------------
+source core.tcl -notrace
+create_project: Time (s): cpu = 00:00:17 ; elapsed = 00:00:23 . Memory (MB): peak = 512.055 ; gain = 216.195
+Command: synth_design -top core -part xc7a35tcpg236-1 -mode out_of_context
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7a35t'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a35t'
+INFO: [Device 21-403] Loading part xc7a35tcpg236-1
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 464
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:14 ; elapsed = 00:00:15 . Memory (MB): peak = 1339.617 ; gain = 439.168
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-9535] ignoring re-definition of command line macro 'PRED_PERCEPTRON' [C:/Users/Prasit/Documents/ACSA_RISCV/vivado_gui/rv_perceptron/rv_perceptron.srcs/sources_1/new/bp_config.vh:94]
+INFO: [Synth 8-6157] synthesizing module 'core' [C:/Users/Prasit/Documents/ACSA_RISCV/vivado_gui/rv_perceptron/rv_perceptron.srcs/sources_1/new/core.sv:3]
+INFO: [Synth 8-6157] synthesizing module 'perceptronPredictor' [C:/Users/Prasit/Documents/ACSA_RISCV/vivado_gui/rv_perceptron/rv_perceptron.srcs/sources_1/new/perceptronPredictor.sv:64]
+INFO: [Synth 8-226] default block is never used [C:/Users/Prasit/Documents/ACSA_RISCV/vivado_gui/rv_perceptron/rv_perceptron.srcs/sources_1/new/perceptronPredictor.sv:526]
+INFO: [Synth 8-6155] done synthesizing module 'perceptronPredictor' (0#1) [C:/Users/Prasit/Documents/ACSA_RISCV/vivado_gui/rv_perceptron/rv_perceptron.srcs/sources_1/new/perceptronPredictor.sv:64]
+INFO: [Synth 8-6157] synthesizing module 'hazardUnit' [C:/Users/Prasit/Documents/ACSA_RISCV/vivado_gui/rv_perceptron/rv_perceptron.srcs/sources_1/new/hazardUnit.sv:1]
+INFO: [Synth 8-6155] done synthesizing module 'hazardUnit' (0#1) [C:/Users/Prasit/Documents/ACSA_RISCV/vivado_gui/rv_perceptron/rv_perceptron.srcs/sources_1/new/hazardUnit.sv:1]
+INFO: [Synth 8-6157] synthesizing module 'stageInstFetch' [C:/Users/Prasit/Documents/ACSA_RISCV/vivado_gui/rv_perceptron/rv_perceptron.srcs/sources_1/new/stageInstFetch.sv:1]
+INFO: [Synth 8-6155] done synthesizing module 'stageInstFetch' (0#1) [C:/Users/Prasit/Documents/ACSA_RISCV/vivado_gui/rv_perceptron/rv_perceptron.srcs/sources_1/new/stageInstFetch.sv:1]
+INFO: [Synth 8-6157] synthesizing module 'stageDecode' [C:/Users/Prasit/Documents/ACSA_RISCV/vivado_gui/rv_perceptron/rv_perceptron.srcs/sources_1/new/stageDecode.sv:2]
+INFO: [Synth 8-6157] synthesizing module 'controlUnit' [C:/Users/Prasit/Documents/ACSA_RISCV/vivado_gui/rv_perceptron/rv_perceptron.srcs/sources_1/new/controlUnit.sv:1]
+INFO: [Synth 8-6155] done synthesizing module 'controlUnit' (0#1) [C:/Users/Prasit/Documents/ACSA_RISCV/vivado_gui/rv_perceptron/rv_perceptron.srcs/sources_1/new/controlUnit.sv:1]
+INFO: [Synth 8-6157] synthesizing module 'extend' [C:/Users/Prasit/Documents/ACSA_RISCV/vivado_gui/rv_perceptron/rv_perceptron.srcs/sources_1/new/extend.sv:1]
+INFO: [Synth 8-6155] done synthesizing module 'extend' (0#1) [C:/Users/Prasit/Documents/ACSA_RISCV/vivado_gui/rv_perceptron/rv_perceptron.srcs/sources_1/new/extend.sv:1]
+INFO: [Synth 8-6157] synthesizing module 'registerFile' [C:/Users/Prasit/Documents/ACSA_RISCV/vivado_gui/rv_perceptron/rv_perceptron.srcs/sources_1/new/registerFile.sv:1]
+INFO: [Synth 8-6155] done synthesizing module 'registerFile' (0#1) [C:/Users/Prasit/Documents/ACSA_RISCV/vivado_gui/rv_perceptron/rv_perceptron.srcs/sources_1/new/registerFile.sv:1]
+INFO: [Synth 8-6157] synthesizing module 'csrFile' [C:/Users/Prasit/Documents/ACSA_RISCV/vivado_gui/rv_perceptron/rv_perceptron.srcs/sources_1/new/csrFile.sv:14]
+INFO: [Synth 8-6155] done synthesizing module 'csrFile' (0#1) [C:/Users/Prasit/Documents/ACSA_RISCV/vivado_gui/rv_perceptron/rv_perceptron.srcs/sources_1/new/csrFile.sv:14]
+INFO: [Synth 8-6155] done synthesizing module 'stageDecode' (0#1) [C:/Users/Prasit/Documents/ACSA_RISCV/vivado_gui/rv_perceptron/rv_perceptron.srcs/sources_1/new/stageDecode.sv:2]
+INFO: [Synth 8-6157] synthesizing module 'stageExecute' [C:/Users/Prasit/Documents/ACSA_RISCV/vivado_gui/rv_perceptron/rv_perceptron.srcs/sources_1/new/stageExecute.sv:2]
+INFO: [Synth 8-6157] synthesizing module 'alu' [C:/Users/Prasit/Documents/ACSA_RISCV/vivado_gui/rv_perceptron/rv_perceptron.srcs/sources_1/new/alu.sv:1]
+INFO: [Synth 8-226] default block is never used [C:/Users/Prasit/Documents/ACSA_RISCV/vivado_gui/rv_perceptron/rv_perceptron.srcs/sources_1/new/alu.sv:40]
+INFO: [Synth 8-6155] done synthesizing module 'alu' (0#1) [C:/Users/Prasit/Documents/ACSA_RISCV/vivado_gui/rv_perceptron/rv_perceptron.srcs/sources_1/new/alu.sv:1]
+INFO: [Synth 8-6157] synthesizing module 'csrUnit' [C:/Users/Prasit/Documents/ACSA_RISCV/vivado_gui/rv_perceptron/rv_perceptron.srcs/sources_1/new/csrUnit.sv:1]
+INFO: [Synth 8-6155] done synthesizing module 'csrUnit' (0#1) [C:/Users/Prasit/Documents/ACSA_RISCV/vivado_gui/rv_perceptron/rv_perceptron.srcs/sources_1/new/csrUnit.sv:1]
+INFO: [Synth 8-6155] done synthesizing module 'stageExecute' (0#1) [C:/Users/Prasit/Documents/ACSA_RISCV/vivado_gui/rv_perceptron/rv_perceptron.srcs/sources_1/new/stageExecute.sv:2]
+INFO: [Synth 8-6157] synthesizing module 'stageMem' [C:/Users/Prasit/Documents/ACSA_RISCV/vivado_gui/rv_perceptron/rv_perceptron.srcs/sources_1/new/stageMem.sv:1]
+INFO: [Synth 8-6155] done synthesizing module 'stageMem' (0#1) [C:/Users/Prasit/Documents/ACSA_RISCV/vivado_gui/rv_perceptron/rv_perceptron.srcs/sources_1/new/stageMem.sv:1]
+INFO: [Synth 8-6157] synthesizing module 'stageWback' [C:/Users/Prasit/Documents/ACSA_RISCV/vivado_gui/rv_perceptron/rv_perceptron.srcs/sources_1/new/stageWback.sv:1]
+INFO: [Synth 8-6155] done synthesizing module 'stageWback' (0#1) [C:/Users/Prasit/Documents/ACSA_RISCV/vivado_gui/rv_perceptron/rv_perceptron.srcs/sources_1/new/stageWback.sv:1]
+INFO: [Synth 8-6155] done synthesizing module 'core' (0#1) [C:/Users/Prasit/Documents/ACSA_RISCV/vivado_gui/rv_perceptron/rv_perceptron.srcs/sources_1/new/core.sv:3]
+WARNING: [Synth 8-6014] Unused sequential element tExWrong_reg was removed.  [C:/Users/Prasit/Documents/ACSA_RISCV/vivado_gui/rv_perceptron/rv_perceptron.srcs/sources_1/new/perceptronPredictor.sv:456]
+WARNING: [Synth 8-6014] Unused sequential element tSpecUpd_reg was removed.  [C:/Users/Prasit/Documents/ACSA_RISCV/vivado_gui/rv_perceptron/rv_perceptron.srcs/sources_1/new/perceptronPredictor.sv:456]
+WARNING: [Synth 8-6014] Unused sequential element tCount_reg was removed.  [C:/Users/Prasit/Documents/ACSA_RISCV/vivado_gui/rv_perceptron/rv_perceptron.srcs/sources_1/new/perceptronPredictor.sv:457]
+WARNING: [Synth 8-7129] Port wAddr[11] in module csrFile is either unconnected or has no load
+WARNING: [Synth 8-7129] Port wAddr[10] in module csrFile is either unconnected or has no load
+WARNING: [Synth 8-7129] Port wAddr[9] in module csrFile is either unconnected or has no load
+WARNING: [Synth 8-7129] Port wAddr[8] in module csrFile is either unconnected or has no load
+WARNING: [Synth 8-7129] Port wAddr[7] in module csrFile is either unconnected or has no load
+WARNING: [Synth 8-7129] Port wAddr[6] in module csrFile is either unconnected or has no load
+WARNING: [Synth 8-7129] Port wAddr[5] in module csrFile is either unconnected or has no load
+WARNING: [Synth 8-7129] Port wAddr[4] in module csrFile is either unconnected or has no load
+WARNING: [Synth 8-7129] Port exPc[1] in module perceptronPredictor is either unconnected or has no load
+WARNING: [Synth 8-7129] Port exPc[0] in module perceptronPredictor is either unconnected or has no load
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:19 ; elapsed = 00:00:22 . Memory (MB): peak = 1484.023 ; gain = 583.574
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:19 ; elapsed = 00:00:22 . Memory (MB): peak = 1484.023 ; gain = 583.574
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:19 ; elapsed = 00:00:22 . Memory (MB): peak = 1484.023 ; gain = 583.574
+---------------------------------------------------------------------------------
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.108 . Memory (MB): peak = 1484.023 ; gain = 0.000
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [C:/Users/Prasit/Documents/ACSA_RISCV/vivado_gui/rv_perceptron/rv_perceptron.srcs/constrs_1/new/timing.xdc]
+Finished Parsing XDC File [C:/Users/Prasit/Documents/ACSA_RISCV/vivado_gui/rv_perceptron/rv_perceptron.srcs/constrs_1/new/timing.xdc]
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1581.180 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.195 . Memory (MB): peak = 1581.188 ; gain = 0.008
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:40 ; elapsed = 00:00:46 . Memory (MB): peak = 1581.188 ; gain = 680.738
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7a35tcpg236-1
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:40 ; elapsed = 00:00:46 . Memory (MB): peak = 1581.188 ; gain = 680.738
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:40 ; elapsed = 00:00:46 . Memory (MB): peak = 1581.188 ; gain = 680.738
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:42 ; elapsed = 00:00:49 . Memory (MB): peak = 1581.188 ; gain = 680.738
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input   32 Bit       Adders := 4     
+	   3 Input   32 Bit       Adders := 1     
+	   2 Input   15 Bit       Adders := 4     
+	  16 Input   15 Bit       Adders := 4     
+	  15 Input   15 Bit       Adders := 2     
+	   4 Input   15 Bit       Adders := 2     
+	   2 Input   10 Bit       Adders := 1     
+	   2 Input    8 Bit       Adders := 51    
++---XORs : 
+	   2 Input     32 Bit         XORs := 1     
+	   2 Input      1 Bit         XORs := 1     
++---Registers : 
+	              200 Bit    Registers := 1     
+	               32 Bit    Registers := 31    
+	               25 Bit    Registers := 2     
+	               24 Bit    Registers := 4     
+	               15 Bit    Registers := 8     
+	               12 Bit    Registers := 3     
+	               10 Bit    Registers := 1     
+	                8 Bit    Registers := 1     
+	                5 Bit    Registers := 5     
+	                3 Bit    Registers := 2     
+	                2 Bit    Registers := 4     
+	                1 Bit    Registers := 23    
++---RAMs : 
+	              25K Bit	(128 X 200 bit)          RAMs := 1     
+	               8K Bit	(256 X 32 bit)          RAMs := 1     
+	               6K Bit	(256 X 24 bit)          RAMs := 1     
+	             1024 Bit	(32 X 32 bit)          RAMs := 1     
+	              512 Bit	(256 X 2 bit)          RAMs := 1     
+	              256 Bit	(256 X 1 bit)          RAMs := 2     
++---Muxes : 
+	   2 Input   32 Bit        Muxes := 15    
+	   4 Input   32 Bit        Muxes := 4     
+	   2 Input   24 Bit        Muxes := 2     
+	   2 Input   15 Bit        Muxes := 50    
+	   2 Input    8 Bit        Muxes := 75    
+	   9 Input    3 Bit        Muxes := 1     
+	   2 Input    3 Bit        Muxes := 2     
+	   2 Input    2 Bit        Muxes := 8     
+	   7 Input    2 Bit        Muxes := 1     
+	   9 Input    2 Bit        Muxes := 2     
+	   2 Input    1 Bit        Muxes := 27    
+	   6 Input    1 Bit        Muxes := 1     
+	   9 Input    1 Bit        Muxes := 7     
+	   8 Input    1 Bit        Muxes := 1     
+	   4 Input    1 Bit        Muxes := 2     
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 90 (col length:60)
+BRAMs: 100 (col length: RAMB18 60 RAMB36 30)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
+WARNING: [Synth 8-7129] Port exPc[1] in module perceptronPredictor is either unconnected or has no load
+WARNING: [Synth 8-7129] Port exPc[0] in module perceptronPredictor is either unconnected or has no load
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:01:06 ; elapsed = 00:01:15 . Memory (MB): peak = 1581.188 ; gain = 680.738
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+
+Distributed RAM: Preliminary Mapping Report (see note below)
++-----------------------+---------------------------+-----------+----------------------+-----------------+
+|Module Name            | RTL Object                | Inference | Size (Depth x Width) | Primitives      | 
++-----------------------+---------------------------+-----------+----------------------+-----------------+
+|\gPerceptron.bPredict  | btbTag_reg                | Implied   | 256 x 24             | RAM128X1D x 48  | 
+|\gPerceptron.bPredict  | btbValid_reg              | Implied   | 256 x 1              | RAM128X1D x 2   | 
+|\gPerceptron.bPredict  | btbUncond_reg             | Implied   | 256 x 1              | RAM128X1D x 2   | 
+|\gPerceptron.bPredict  | btbCount_reg              | Implied   | 256 x 2              | RAM128X1D x 4   | 
+|\gPerceptron.bPredict  | btbTgt_reg                | Implied   | 256 x 32             | RAM64M x 44     | 
+|\gPerceptron.bPredict  | wtable_reg                | Implied   | 128 x 200            | RAM64M x 268    | 
+|core                   | decode/regF/registers_reg | Implied   | 32 x 32              | RAM32M x 12     | 
++-----------------------+---------------------------+-----------+----------------------+-----------------+
+
+Note: The table above is a preliminary report that shows the Distributed RAMs at the current stage of the synthesis flow. Some Distributed RAMs may be reimplemented as non Distributed RAM primitives later in the synthesis flow. Multiple instantiated RAMs are reported only once.
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:01:10 ; elapsed = 00:01:20 . Memory (MB): peak = 1581.188 ; gain = 680.738
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:01:27 ; elapsed = 00:01:38 . Memory (MB): peak = 1627.637 ; gain = 727.188
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+
+Distributed RAM: Final Mapping Report
++-----------------------+---------------------------+-----------+----------------------+-----------------+
+|Module Name            | RTL Object                | Inference | Size (Depth x Width) | Primitives      | 
++-----------------------+---------------------------+-----------+----------------------+-----------------+
+|\gPerceptron.bPredict  | btbTag_reg                | Implied   | 256 x 24             | RAM128X1D x 48  | 
+|\gPerceptron.bPredict  | btbValid_reg              | Implied   | 256 x 1              | RAM128X1D x 2   | 
+|\gPerceptron.bPredict  | btbUncond_reg             | Implied   | 256 x 1              | RAM128X1D x 2   | 
+|\gPerceptron.bPredict  | btbCount_reg              | Implied   | 256 x 2              | RAM128X1D x 4   | 
+|\gPerceptron.bPredict  | btbTgt_reg                | Implied   | 256 x 32             | RAM64M x 44     | 
+|\gPerceptron.bPredict  | wtable_reg                | Implied   | 128 x 200            | RAM64M x 268    | 
+|core                   | decode/regF/registers_reg | Implied   | 32 x 32              | RAM32M x 12     | 
++-----------------------+---------------------------+-----------+----------------------+-----------------+
+
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:01:29 ; elapsed = 00:01:40 . Memory (MB): peak = 1627.637 ; gain = 727.188
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:01:33 ; elapsed = 00:01:44 . Memory (MB): peak = 1627.637 ; gain = 727.188
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:01:33 ; elapsed = 00:01:44 . Memory (MB): peak = 1627.637 ; gain = 727.188
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:01:33 ; elapsed = 00:01:44 . Memory (MB): peak = 1627.637 ; gain = 727.188
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:01:33 ; elapsed = 00:01:44 . Memory (MB): peak = 1627.637 ; gain = 727.188
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:01:33 ; elapsed = 00:01:44 . Memory (MB): peak = 1627.637 ; gain = 727.188
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:01:33 ; elapsed = 00:01:44 . Memory (MB): peak = 1627.637 ; gain = 727.188
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+----------+------+
+|      |Cell      |Count |
++------+----------+------+
+|1     |CARRY4    |   256|
+|2     |LUT1      |    54|
+|3     |LUT2      |   106|
+|4     |LUT3      |   647|
+|5     |LUT4      |   595|
+|6     |LUT5      |   874|
+|7     |LUT6      |   980|
+|8     |MUXF7     |   112|
+|9     |RAM128X1D |    56|
+|10    |RAM32M    |    10|
+|11    |RAM32X1D  |     4|
+|12    |RAM64M    |   312|
+|13    |FDRE      |  1735|
+|14    |FDSE      |     4|
++------+----------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:01:33 ; elapsed = 00:01:44 . Memory (MB): peak = 1627.637 ; gain = 727.188
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 3 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:01:08 ; elapsed = 00:01:37 . Memory (MB): peak = 1627.637 ; gain = 630.023
+Synthesis Optimization Complete : Time (s): cpu = 00:01:33 ; elapsed = 00:01:44 . Memory (MB): peak = 1627.637 ; gain = 727.188
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.048 . Memory (MB): peak = 1639.531 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 750 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 1 inverter(s) to 14 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.003 . Memory (MB): peak = 1643.172 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 382 instances were transformed.
+  RAM128X1D => RAM128X1D (MUXF7(x2), RAMD64E(x4)): 56 instances
+  RAM32M => RAM32M (inverted pins: WCLK) (RAMD32(x6), RAMS32(x2)): 10 instances
+  RAM32X1D => RAM32X1D (inverted pins: WCLK) (RAMD32(x2)): 4 instances
+  RAM64M => RAM64M (RAMD64E(x4)): 312 instances
+
+Synth Design complete | Checksum: 9a3bb9ec
+INFO: [Common 17-83] Releasing license: Synthesis
+44 Infos, 17 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:01:41 ; elapsed = 00:02:07 . Memory (MB): peak = 1643.172 ; gain = 1131.117
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.021 . Memory (MB): peak = 1643.172 ; gain = 0.000
+INFO: [Common 17-1381] The checkpoint 'C:/Users/Prasit/Documents/ACSA_RISCV/vivado_gui/rv_perceptron/rv_perceptron.runs/synth_1/core.dcp' has been generated.
+INFO: [runtcl-4] Executing : report_utilization -file core_utilization_synth.rpt -pb core_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Sat Sep 12 12:27:38 2026...
