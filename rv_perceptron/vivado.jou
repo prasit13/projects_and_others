@@ -1,0 +1,38 @@
+#-----------------------------------------------------------
+# Vivado v2023.2 (64-bit)
+# SW Build 4029153 on Fri Oct 13 20:14:34 MDT 2023
+# IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
+# SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
+# Start of session at: Sat Sep 12 11:30:00 2026
+# Process ID: 18904
+# Current directory: C:/Users/Prasit/Documents/ACSA_RISCV/vivado_gui/rv_perceptron
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent11340 C:\Users\Prasit\Documents\ACSA_RISCV\vivado_gui\rv_perceptron\rv_perceptron.xpr
+# Log file: C:/Users/Prasit/Documents/ACSA_RISCV/vivado_gui/rv_perceptron/vivado.log
+# Journal file: C:/Users/Prasit/Documents/ACSA_RISCV/vivado_gui/rv_perceptron\vivado.jou
+# Running On: DESKTOP-LP0DM3H, OS: Windows, CPU Frequency: 2496 MHz, CPU Physical cores: 10, Host memory: 8245 MB
+#-----------------------------------------------------------
+start_gui
+open_project C:/Users/Prasit/Documents/ACSA_RISCV/vivado_gui/rv_perceptron/rv_perceptron.xpr
+update_compile_order -fileset sources_1
+copy_run -name impl_1_copy_4 [get_runs impl_1] -parent_run synth_1
+set_property verilog_define {SYNTHESIS PRED_PERCEPTRON BP_NO_TABLE_RESET} [current_fileset]
+copy_run -name impl_1_copy_5 [get_runs impl_1] -parent_run synth_1
+launch_simulation
+source C:/Users/Prasit/Documents/ACSA_RISCV/vivado_gui/rv_perceptron/xsim_waves.tcl
+close_sim
+reset_run synth_1
+launch_runs synth_1 -jobs 12
+wait_on_run synth_1
+synth_design -rtl -rtl_skip_mlo -name rtl_1
+close_design
+open_run synth_1 -name synth_1
+close_design
+launch_runs impl_1 -jobs 12
+wait_on_run impl_1
+open_run impl_1
+report_utilization -name utilization_1
+report_timing_summary -delay_type min_max -report_unconstrained -check_timing_verbose -max_paths 10 -input_pins -routable_nets -name timing_1
+close_design
+launch_simulation
+source C:/Users/Prasit/Documents/ACSA_RISCV/vivado_gui/rv_perceptron/xsim_waves.tcl
+close_sim

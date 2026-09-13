@@ -1,0 +1,70 @@
+#-----------------------------------------------------------
+# Vivado v2023.2 (64-bit)
+# SW Build 4029153 on Fri Oct 13 20:14:34 MDT 2023
+# IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
+# SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
+# Start of session at: Fri Sep 11 20:26:38 2026
+# Process ID: 21944
+# Current directory: C:/Users/Prasit/Documents/ACSA_RISCV/vivado_gui/rv_perceptron
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent21076 C:\Users\Prasit\Documents\ACSA_RISCV\vivado_gui\rv_perceptron\rv_perceptron.xpr
+# Log file: C:/Users/Prasit/Documents/ACSA_RISCV/vivado_gui/rv_perceptron/vivado.log
+# Journal file: C:/Users/Prasit/Documents/ACSA_RISCV/vivado_gui/rv_perceptron\vivado.jou
+# Running On: DESKTOP-LP0DM3H, OS: Windows, CPU Frequency: 2496 MHz, CPU Physical cores: 10, Host memory: 8245 MB
+#-----------------------------------------------------------
+start_gui
+open_project C:/Users/Prasit/Documents/ACSA_RISCV/vivado_gui/rv_perceptron/rv_perceptron.xpr
+update_compile_order -fileset sources_1
+update_compile_order -fileset sim_1
+set_property SOURCE_SET sources_1 [get_filesets sim_1]
+close [ open C:/Users/Prasit/Documents/ACSA_RISCV/vivado_gui/rv_perceptron/rv_perceptron.srcs/sim_1/new/code.mem w ]
+add_files -fileset sim_1 C:/Users/Prasit/Documents/ACSA_RISCV/vivado_gui/rv_perceptron/rv_perceptron.srcs/sim_1/new/code.mem
+close [ open C:/Users/Prasit/Documents/ACSA_RISCV/vivado_gui/rv_perceptron/rv_perceptron.srcs/sim_1/new/data.mem w ]
+add_files -fileset sim_1 C:/Users/Prasit/Documents/ACSA_RISCV/vivado_gui/rv_perceptron/rv_perceptron.srcs/sim_1/new/data.mem
+set_property -name {xsim.simulate.runtime} -value {all} -objects [get_filesets sim_1]
+set_property -name {xsim.simulate.custom_tcl} -value {xsim_waves.tcl} -objects [get_filesets sim_1]
+set_property -name {xsim.simulate.custom_tcl} -value {C:\Users\Prasit\Documents\ACSA_RISCV\vivado_gui\rv_perceptron\xsim_waves.tcl} -objects [get_filesets sim_1]
+set_property -name {xsim.compile.xvlog.more_options} -value {-d PRED_PERCEPTRON -i C:\Users\Prasit\Documents\ACSA_RISCV\vivado_gui\rv_perceptron\rv_perceptron.srcs\sources_1\new} -objects [get_filesets sim_1]
+launch_simulation
+launch_simulation
+source {C:UsersPrasitDocumentsACSA_RISCVivado_guiv_perceptronxsim_waves.tcl}
+close_sim
+launch_simulation
+source {C:UsersPrasitDocumentsACSA_RISCVivado_guiv_perceptronxsim_waves.tcl}
+close_sim
+set_property -name {xsim.simulate.custom_tcl} -value {C:/Users/Prasit/Documents/ACSA_RISCV/vivado_gui/rv_perceptron/xsim_waves.tcl} -objects [get_filesets sim_1]
+launch_simulation
+source C:/Users/Prasit/Documents/ACSA_RISCV/vivado_gui/rv_perceptron/xsim_waves.tcl
+close_sim
+set_property -name {xsim.elaborate.debug_level} -value {all} -objects [get_filesets sim_1]
+launch_simulation
+source C:/Users/Prasit/Documents/ACSA_RISCV/vivado_gui/rv_perceptron/xsim_waves.tcl
+close_sim
+launch_simulation
+source C:/Users/Prasit/Documents/ACSA_RISCV/vivado_gui/rv_perceptron/xsim_waves.tcl
+close_sim
+launch_simulation
+source C:/Users/Prasit/Documents/ACSA_RISCV/vivado_gui/rv_perceptron/xsim_waves.tcl
+close_sim
+launch_simulation
+source C:/Users/Prasit/Documents/ACSA_RISCV/vivado_gui/rv_perceptron/xsim_waves.tcl
+close_sim
+set_property -name {xsim.elaborate.debug_level} -value {typical} -objects [get_filesets sim_1]
+launch_simulation
+source C:/Users/Prasit/Documents/ACSA_RISCV/vivado_gui/rv_perceptron/xsim_waves.tcl
+close_sim
+launch_simulation
+source C:/Users/Prasit/Documents/ACSA_RISCV/vivado_gui/rv_perceptron/xsim_waves.tcl
+close_sim
+launch_simulation
+source C:/Users/Prasit/Documents/ACSA_RISCV/vivado_gui/rv_perceptron/xsim_waves.tcl
+relaunch_sim
+close_sim
+launch_simulation
+source C:/Users/Prasit/Documents/ACSA_RISCV/vivado_gui/rv_perceptron/xsim_waves.tcl
+relaunch_sim
+close_sim
+launch_simulation
+source C:/Users/Prasit/Documents/ACSA_RISCV/vivado_gui/rv_perceptron/xsim_waves.tcl
+close_sim
+launch_simulation
+source C:/Users/Prasit/Documents/ACSA_RISCV/vivado_gui/rv_perceptron/xsim_waves.tcl
