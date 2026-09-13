@@ -1,0 +1,41 @@
+Vivado Simulator v2023.2
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
+Running: C:/Xilinx/Vivado/2023.2/bin/unwrapped/win64.o/xelab.exe --incr --debug typical --relax --mt 2 --maxdelay -L xil_defaultlib -L simprims_ver -L secureip --snapshot tb_gf283_top_time_impl -transport_int_delays -pulse_r 0 -pulse_int_r 0 -pulse_e 0 -pulse_int_e 0 xil_defaultlib.tb_gf283_top xil_defaultlib.glbl -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+Pass Through NonSizing Optimizer
+WARNING: [VRFC 10-2861] module 'gf283_top' does not have a parameter named M [C:/Users/Prasit/Documents/hsec_proj_all/itoh_inv_final/project_1/project_1.srcs/sim_1/new/tb_gf283_top.v:62]
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+INFO: [XSIM 43-3451] SDF backannotation process started with SDF file "tb_gf283_top_time_impl.sdf", for root module "tb_gf283_top/dut".
+INFO: [XSIM 43-3452] SDF backannotation was successful for SDF file "tb_gf283_top_time_impl.sdf", for root module "tb_gf283_top/dut".
+Time Resolution for simulation is 1ps
+Compiling module simprims_ver.FDCE_default
+Compiling module simprims_ver.OBUF
+Compiling module simprims_ver.x_lut3_mux8
+Compiling module simprims_ver.LUT3
+Compiling module simprims_ver.BUFG
+Compiling module simprims_ver.IBUF
+Compiling module simprims_ver.LUT5
+Compiling module simprims_ver.LUT6
+Compiling module simprims_ver.LUT4
+Compiling module simprims_ver.x_lut2_mux4
+Compiling module simprims_ver.LUT2
+Compiling module simprims_ver.FDPE_default
+Compiling module simprims_ver.x_lut1_mux2
+Compiling module simprims_ver.LUT1
+Compiling module simprims_ver.CARRY4
+Compiling module xil_defaultlib.gf283_sqr_pow2k
+Compiling module xil_defaultlib.gf283_itoh_tsujii
+Compiling module xil_defaultlib.ks142
+Compiling module xil_defaultlib.ks141
+Compiling module xil_defaultlib.ks142_0
+Compiling module xil_defaultlib.ks283
+Compiling module xil_defaultlib.gf283_reduce
+Compiling module xil_defaultlib.gf283_mul_pipe
+Compiling module xil_defaultlib.gf283_top
+Compiling module xil_defaultlib.tb_gf283_top
+Compiling module xil_defaultlib.glbl
+Built simulation snapshot tb_gf283_top_time_impl
