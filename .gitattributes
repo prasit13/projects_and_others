@@ -1,1 +1,2 @@
 GF283_Itoh_Tsujii_Vivado/project_1/project_1.sim/sim_1/impl/timing/xsim/drive2.zip filter=lfs diff=lfs merge=lfs -text
+GF283_Itoh_Tsujii_Vivado/project_1/project_1.sim/sim_1/impl/timing/xsim/tb_gf283_top_time_impl.wdb filter=lfs diff=lfs merge=lfs -text
