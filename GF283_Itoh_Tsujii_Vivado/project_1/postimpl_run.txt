@@ -1,0 +1,45 @@
+﻿
+[1/4] Exporting routed netlist and SDF ...
+powershell : The system cannot find the path specified.
+At line:2 char:1
++ powershell -ExecutionPolicy Bypass -File .\run_postimpl_sim.ps1 *>&1  ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (The system cann...path specified.:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+[2/4] xvlog: compiling netlist and testbench ...
+ECHO is off.
+ECHO is off.
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/Prasit/Documents/hsec_proj_all/itoh_inv_final/project_1/postimpl_sim/gf283_top_time_impl.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module gf283_itoh_tsujii
+INFO: [VRFC 10-311] analyzing module gf283_mul_pipe
+INFO: [VRFC 10-311] analyzing module gf283_reduce
+INFO: [VRFC 10-311] analyzing module gf283_sqr_pow2k
+INFO: [VRFC 10-311] analyzing module gf283_top
+INFO: [VRFC 10-311] analyzing module ks141
+INFO: [VRFC 10-311] analyzing module ks142
+INFO: [VRFC 10-311] analyzing module ks142_0
+INFO: [VRFC 10-311] analyzing module ks283
+INFO: [VRFC 10-311] analyzing module glbl
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/Prasit/Documents/hsec_proj_all/itoh_inv_final/project_1/project_1.srcs/sim_1/new/tb_gf283_top.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module tb_gf283_top
+[3/4] xelab: elaborating with SDF annotation (this takes a while) ...
+ECHO is off.
+ECHO is off.
+Vivado Simulator v2023.2
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
+Running: C:/Xilinx/Vivado/2023.2/bin/unwrapped/win64.o/xelab.exe --debug typical --relax --mt 2 --maxdelay -L xil_defaultlib -L simprims_ver -L secureip --snapshot gf283_top_time_impl -transport_int_delays -pulse_r 0 -pulse_int_r 0 -pulse_e 0 -pulse_int_e 0 xil_defaultlib.tb_gf283_top xil_defaultlib.glbl -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+Pass Through NonSizing Optimizer
+WARNING: [VRFC 10-2861] module 'gf283_top' does not have a parameter named M [C:/Users/Prasit/Documents/hsec_proj_all/itoh_inv_final/project_1/project_1.srcs/sim_1/new/tb_gf283_top.v:62]
+Completed static elaboration
+xelab failed - see C:\Users\Prasit\Documents\hsec_proj_all\itoh_inv_final\project_1\postimpl_sim\elaborate.log
+At C:\Users\Prasit\Documents\hsec_proj_all\itoh_inv_final\project_1\run_postimpl_sim.ps1:64 char:42
++ ... 0) { Pop-Location; throw "xelab failed - see $SimDir\elaborate.log" }
++                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (xelab failed - ...m\elaborate.log:String) [], RuntimeException
+    + FullyQualifiedErrorId : xelab failed - see C:\Users\Prasit\Documents\hsec_proj_all\itoh_inv_final\project_1\post 
+   impl_sim\elaborate.log
+ 
