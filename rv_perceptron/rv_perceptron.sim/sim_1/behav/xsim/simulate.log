@@ -1,0 +1,46 @@
+Time resolution is 1 ps
+
+=========================================================
+ RV32I pipeline -- predictor: perceptron
+=========================================================
+Branch predictor test (RV32I)
+Total Cycles (dec):        13571
+Number of Control Xfers:   3572
+Number of Instructions:    12457
+Wrong Branches:            246
+CPI:                       1.089
+Misprediction Rate (%):    6.8
+Final sink:                801
+Done.
+
+---------------------------------------------------------
+ RESULT (program reached HALT)
+---------------------------------------------------------
+ predictor              : perceptron
+ cycles                 : 36416
+ instructions retired   : 35016
+ CPI                    : 1.0400
+ control transfers      : 12005
+ mispredictions         : 382
+ misprediction rate     : 3.18 %
+
+ -- perceptron breakdown (conditional branches only) --
+ conditional branches   : 11786
+ cond. mispredictions   : 307
+ cond. mispred rate     : 2.60 %
+ BTB misses             : 117
+ final theta            : 44
+ N4 overrides (1 cycle) : 262
+ override rate          : 2.22 % of branches
+
+  confidence gate (N3):
+   perceptron chosen     : 11650  (wrong 283)
+   bimodal chosen        : 136  (wrong 33)
+
+  if each ran alone:
+   perceptron only wrong : 332  (2.82 %)
+   bimodal only wrong    : 479  (4.06 %)
+   hybrid (actual) wrong : 316  (2.68 %)
+---------------------------------------------------------
+
+$finish called at time : 36419500 ps : File "C:/Users/Prasit/Documents/ACSA_RISCV/vivado_gui/rv_perceptron/rv_perceptron.srcs/sim_1/new/TB.sv" Line 122
